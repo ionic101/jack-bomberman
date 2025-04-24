@@ -1,0 +1,61 @@
+class Map {
+    field Array cells;
+    field int width;
+    field int height;
+
+    static int cellSize;
+
+    constructor Map new() {
+        let width = 20;
+        let height = 10;
+        let cellSize = 20;
+        let cells = Array.new(width * height);
+        return this;
+    }
+
+    method void createMap() {
+        var int x, y, curCellType;
+        let x = 0;
+        let y = 0;
+        while (y < height) {
+            while (x < width) {
+                if (Utils.isEven(x) & Utils.isEven(y)) {
+                    let curCellType = 1;
+                }
+                else {
+                    let curCellType = 0;
+                }
+                do setCell(curCellType, x, y);
+                let x = x + 1;
+            }
+            let y = y + 1;
+        }
+        return;
+    }
+
+    method void setCell(int cellType, int x, int y) {
+        let cells[y * width + x] = cellType;
+        return;
+    }
+
+    method int getCell(int x, int y) {
+        return cells[y * width + x];
+    }
+
+    method void display() {
+        var int x, y, curCellType;
+        let x = 0;
+        let y = 0;
+        while (y < height) {
+            while (x < width) {
+                let curCellType = getCell(x, y);
+                if (curCellType = 1) {
+                    do Screen.drawRectangle(x * cellSize, y * cellSize, x * cellSize + cellSize, y * cellSize + cellSize);
+                }
+                let x = x + 1;
+            }
+            let y = y + 1;
+        }
+        return;
+    }
+}

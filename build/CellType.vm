@@ -1,0 +1,7 @@
+function CellType.init 0
+push constant 0
+pop static 0
+push constant 1
+pop static 1
+push constant 0
+return

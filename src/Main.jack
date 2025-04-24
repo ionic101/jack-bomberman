@@ -1,0 +1,11 @@
+class Main {
+    function void main () {
+        
+        var Game game;
+        do CellType.init();
+        let game = Game.new();
+        
+        do game.start();
+        return;
+    }
+}

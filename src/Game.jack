@@ -1,0 +1,18 @@
+class Game {
+    field boolean isRun;
+    field Map map;
+
+    constructor Game new() {
+        let map = Map.new();
+        return this;
+    }
+
+    method void start() {
+        let isRun = true;
+        while (isRun) {
+            do Screen.clearScreen();
+            do map.display();
+        }
+        return;
+    }
+}

@@ -1,0 +1,27 @@
+function Game.new 0
+push constant 2
+call Memory.alloc 1
+pop pointer 0
+call Map.new 0
+pop this 1
+push pointer 0
+return
+function Game.start 0
+push argument 0
+pop pointer 0
+push constant 0
+not
+pop this 0
+label WHILE_EXP0
+push this 0
+not
+if-goto WHILE_END0
+call Screen.clearScreen 0
+pop temp 0
+push this 1
+call Map.display 1
+pop temp 0
+goto WHILE_EXP0
+label WHILE_END0
+push constant 0
+return
