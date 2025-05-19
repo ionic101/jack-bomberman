@@ -55,21 +55,25 @@ class Map {
         return cells[y * width + x];
     }
 
+    method int getCellByVector(Vector2 coord) {
+        return cells[coord.y() * width + coord.x()];
+    }
+
     method void display() {
-        var int x, y, curCellType;
-        let x = 0;
-        let y = 0;
-        while (y < height) {
-            while (x < width) {
-                let curCellType = getCell(x, y);
-                if (curCellType = 1) {
-                    do Utils.displayCell(x, y);
+        var Vector2 curCellCoord;
+        let curCellCoord = Vector2.zero();
+
+        while (curCellCoord.y() < height) {
+            while (curCellCoord.x() < width) {
+                if (getCellByVector(curCellCoord) = 1) {
+                    do Utils.displayCell(curCellCoord);
                 }
-                let x = x + 1;
+                do curCellCoord.setX(curCellCoord.x() + 1);
             }
-            let y = y + 1;
-            let x = 0;
+            do curCellCoord.setY(curCellCoord.y() + 1);
+            do curCellCoord.setX(0);
         }
+        do curCellCoord.dispose();
         return;
     }
 }

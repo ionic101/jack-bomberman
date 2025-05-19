@@ -18,17 +18,21 @@ function Utils.displayCell 1
 call Settings.getCellSize 0
 pop local 0
 push argument 0
-push local 0
-call Math.multiply 2
-push argument 1
+call Vector2.x 1
 push local 0
 call Math.multiply 2
 push argument 0
+call Vector2.y 1
+push local 0
+call Math.multiply 2
+push argument 0
+call Vector2.x 1
 push local 0
 call Math.multiply 2
 push local 0
 add
-push argument 1
+push argument 0
+call Vector2.y 1
 push local 0
 call Math.multiply 2
 push local 0

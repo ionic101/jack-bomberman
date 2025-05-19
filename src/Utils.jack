@@ -6,10 +6,10 @@ class Utils {
         return (temp = 0);
     }
 
-    function void displayCell(int x, int y) {
+    function void displayCell(Vector2 coord) {
         var int cellSize;
         let cellSize = Settings.getCellSize();
-        do Screen.drawRectangle(x * cellSize, y * cellSize, x * cellSize + cellSize, y * cellSize + cellSize);
+        do Screen.drawRectangle(coord.x() * cellSize, coord.y() * cellSize, coord.x() * cellSize + cellSize, coord.y() * cellSize + cellSize);
         return;
     }
 }

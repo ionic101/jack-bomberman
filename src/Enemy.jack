@@ -1,0 +1,20 @@
+class Enemy {
+    field Vector2 coord;
+
+    field Vector2 moveDirection;
+
+    constructor Enemy new(Vector2 spawnCoord) {
+        let coord = spawnCoord;
+        let moveDirection = Vector2.up();
+        return this;
+    }
+
+    method void display() {
+        do Utils.displayCell(coord);
+        return;
+    }
+
+    method void move() {
+        return;
+    }
+}

@@ -37,20 +37,21 @@ goto WHILE_EXP0
 label WHILE_END0
 push constant 0
 return
-function Game.readKeyboard 1
+function Game.readKeyboard 2
 push argument 0
 pop pointer 0
 call Keyboard.keyPressed 0
 pop local 0
+call Vector2.zero 0
+pop local 1
 push local 0
 call Settings.getKeyLeft 0
 eq
 if-goto IF_TRUE0
 goto IF_FALSE0
 label IF_TRUE0
-push this 2
-call Player.moveLeft 1
-pop temp 0
+call Vector2.left 0
+pop local 1
 label IF_FALSE0
 push local 0
 call Settings.getKeyRight 0
@@ -58,9 +59,8 @@ eq
 if-goto IF_TRUE1
 goto IF_FALSE1
 label IF_TRUE1
-push this 2
-call Player.moveRight 1
-pop temp 0
+call Vector2.right 0
+pop local 1
 label IF_FALSE1
 push local 0
 call Settings.getKeyUp 0
@@ -68,9 +68,8 @@ eq
 if-goto IF_TRUE2
 goto IF_FALSE2
 label IF_TRUE2
-push this 2
-call Player.moveUp 1
-pop temp 0
+call Vector2.up 0
+pop local 1
 label IF_FALSE2
 push local 0
 call Settings.getKeyDown 0
@@ -78,9 +77,15 @@ eq
 if-goto IF_TRUE3
 goto IF_FALSE3
 label IF_TRUE3
-push this 2
-call Player.moveDown 1
-pop temp 0
+call Vector2.down 0
+pop local 1
 label IF_FALSE3
+push this 2
+push local 1
+call Player.move 2
+pop temp 0
+push local 1
+call Vector2.dispose 1
+pop temp 0
 push constant 0
 return

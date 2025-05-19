@@ -1,44 +1,27 @@
 class Player {
     field Map map;
-    field int x;
-    field int y;
+    field Vector2 coord;
 
     constructor Player new(Map newMap) {
         let map = newMap;
-        let x = 1;
-        let y = 1;
+        let coord = Vector2.new(1, 1);
         return this;
     }
     
     method void display() {
-        do Utils.displayCell(x, y);
+        do Utils.displayCell(coord);
         return;
     }
 
-    method void moveLeft() {
-        if (map.getCell(x - 1, y) = 0) {
-            let x = x - 1;
+    method void move(Vector2 direction) {
+        var Vector2 newCoord;
+        let newCoord = coord.add(direction);
+        if (map.getCellByVector(newCoord) = 0) {
+            do coord.dispose();
+            let coord = newCoord;
         }
-        return;
-    }
-
-    method void moveRight() {
-        if (map.getCell(x + 1, y) = 0) {
-            let x = x + 1;
-        }
-        return;
-    }
-
-    method void moveUp() {
-        if (map.getCell(x, y - 1) = 0) {
-            let y = y - 1;
-        }
-        return;
-    }
-
-    method void moveDown() {
-        if (map.getCell(x, y + 1) = 0) {
-            let y = y + 1;
+        else {
+            do newCoord.dispose();
         }
         return;
     }

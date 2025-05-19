@@ -1,0 +1,23 @@
+function Enemy.new 0
+push constant 2
+call Memory.alloc 1
+pop pointer 0
+push argument 0
+pop this 0
+call Vector2.up 0
+pop this 1
+push pointer 0
+return
+function Enemy.display 0
+push argument 0
+pop pointer 0
+push this 0
+call Utils.displayCell 1
+pop temp 0
+push constant 0
+return
+function Enemy.move 0
+push argument 0
+pop pointer 0
+push constant 0
+return

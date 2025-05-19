@@ -23,20 +23,24 @@ class Game {
 
     method void readKeyboard() {
         var char key;
+        var Vector2 moveDirection;
         let key = Keyboard.keyPressed();
+        let moveDirection = Vector2.zero();
 
         if (key = Settings.getKeyLeft()) {
-            do player.moveLeft();
+            let moveDirection = Vector2.left();
         }
         if (key = Settings.getKeyRight()) {
-            do player.moveRight();
+            let moveDirection = Vector2.right();
         }
         if (key = Settings.getKeyUp()) {
-            do player.moveUp();
+            let moveDirection = Vector2.up();
         }
         if (key = Settings.getKeyDown()) {
-            do player.moveDown();
+            let moveDirection = Vector2.down();
         }
+        do player.move(moveDirection);
+        do moveDirection.dispose();
         return;
     }
 }
