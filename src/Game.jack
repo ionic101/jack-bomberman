@@ -18,11 +18,12 @@ class Game {
         let isRun = true;
         while (isRun) {
             do readKeyboard();
+            do moveEnemies();
             do Screen.clearScreen();
             do map.display();
             do player.display();
             do displayEnemies();
-            do Sys.wait(150);
+            do Sys.wait(200);
         }
         return;
     }
@@ -34,6 +35,18 @@ class Game {
         while (i < countEnemies) {
             let curEnemy = enemies[i];
             do curEnemy.display();
+            let i = i + 1;
+        }
+        return;
+    }
+
+    method void moveEnemies() {
+        var Enemy curEnemy;
+        var int i;
+        let i = 0;
+        while (i < countEnemies) {
+            let curEnemy = enemies[i];
+            do curEnemy.move();
             let i = i + 1;
         }
         return;

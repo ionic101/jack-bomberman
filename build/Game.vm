@@ -39,6 +39,9 @@ if-goto WHILE_END0
 push pointer 0
 call Game.readKeyboard 1
 pop temp 0
+push pointer 0
+call Game.moveEnemies 1
+pop temp 0
 call Screen.clearScreen 0
 pop temp 0
 push this 1
@@ -50,7 +53,7 @@ pop temp 0
 push pointer 0
 call Game.displayEnemies 1
 pop temp 0
-push constant 150
+push constant 200
 call Sys.wait 1
 pop temp 0
 goto WHILE_EXP0
@@ -76,6 +79,34 @@ push that 0
 pop local 0
 push local 0
 call Enemy.display 1
+pop temp 0
+push local 1
+push constant 1
+add
+pop local 1
+goto WHILE_EXP0
+label WHILE_END0
+push constant 0
+return
+function Game.moveEnemies 2
+push argument 0
+pop pointer 0
+push constant 0
+pop local 1
+label WHILE_EXP0
+push local 1
+push this 4
+lt
+not
+if-goto WHILE_END0
+push local 1
+push this 3
+add
+pop pointer 1
+push that 0
+pop local 0
+push local 0
+call Enemy.move 1
 pop temp 0
 push local 1
 push constant 1
