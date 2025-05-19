@@ -25,7 +25,70 @@ class Enemy {
         }
         else {
             do newCoord.dispose();
+            do changeDirection();
+            do move();
         }
+        return;
+    }
+
+    method void changeDirection() {
+        var Array directions;
+        var Vector2 curDirection;
+        var int index, randIndex;
+        let directions = Array.new(4);
+        let index = 0;
+
+        let curDirection = Vector2.up();
+        if (map.getCellByVector(curDirection) = 0) {
+            let directions[index] = curDirection;
+            let index = index + 1;
+        }
+        else {
+            do curDirection.dispose();
+        }
+
+        let curDirection = Vector2.down();
+        if (map.getCellByVector(curDirection) = 0) {
+            let directions[index] = curDirection;
+            let index = index + 1;
+        }
+        else {
+            do curDirection.dispose();
+        }
+
+        let curDirection = Vector2.left();
+        if (map.getCellByVector(curDirection) = 0) {
+            let directions[index] = curDirection;
+            let index = index + 1;
+        }
+        else {
+            do curDirection.dispose();
+        }
+
+        let curDirection = Vector2.right();
+        if (map.getCellByVector(curDirection) = 0) {
+            let directions[index] = curDirection;
+            let index = index + 1;
+        }
+        else {
+            do curDirection.dispose();
+        }
+
+        let randIndex = Random.randint(index - 1);
+        if (randIndex > 0) {
+            let moveDirection = directions[randIndex];
+        }
+
+        //clear array
+        let index = 0;
+        while (index < 4) {
+            if (~(index = randIndex)) {
+                let curDirection = directions[index];
+                do curDirection.dispose();
+            }
+            let index = index + 1;
+        }
+        do directions.dispose();
         return;
     }
 }

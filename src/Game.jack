@@ -2,16 +2,16 @@ class Game {
     field boolean isRun;
     field Map map;
     field Player player;
+    field Array enemies;
 
     constructor Game new() {
         let map = Map.new();
         let player = Player.new(map);
+        let enemies = Array.new(3);
         return this;
     }
 
     method void start() {
-        var int t;
-        do Random.setSeed(1234);
         let isRun = true;
         while (isRun) {
             do readKeyboard();

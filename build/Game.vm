@@ -33,16 +33,6 @@ pop temp 0
 push this 2
 call Player.display 1
 pop temp 0
-push constant 10
-push constant 5
-call Output.moveCursor 2
-pop temp 0
-push constant 4
-call Random.randint 1
-pop local 0
-push local 0
-call Output.printInt 1
-pop temp 0
 push constant 150
 call Sys.wait 1
 pop temp 0
