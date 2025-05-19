@@ -4,8 +4,8 @@ class Map {
     field int height;
 
     constructor Map new() {
-        let width = 19;
-        let height = 11;
+        let width = 15;
+        let height = 15;
         let cells = Array.new(width * height);
         do createMap();
         return this;
@@ -66,7 +66,8 @@ class Map {
         while (curCellCoord.y() < height) {
             while (curCellCoord.x() < width) {
                 if (getCellByVector(curCellCoord) = 1) {
-                    do Utils.displayCell(curCellCoord);
+                    //do Utils.displayCell(curCellCoord);
+                    do displayWall(curCellCoord);
                 }
                 do curCellCoord.setX(curCellCoord.x() + 1);
             }
@@ -74,6 +75,28 @@ class Map {
             do curCellCoord.setX(0);
         }
         do curCellCoord.dispose();
+        return;
+    }
+
+    method void displayWall(Vector2 coord) {
+        var int memAddress; 
+        let memAddress = Utils.getSpriteMemAddress(coord);
+        do Memory.poke(memAddress, -1);
+        do Memory.poke(memAddress +32, -2119);
+        do Memory.poke(memAddress +64, -8977);
+        do Memory.poke(memAddress +96, -1097);
+        do Memory.poke(memAddress +128, -28673);
+        do Memory.poke(memAddress +160, -1571);
+        do Memory.poke(memAddress +192, -8329);
+        do Memory.poke(memAddress +224, -2065);
+        do Memory.poke(memAddress +256, -29251);
+        do Memory.poke(memAddress +288, -265);
+        do Memory.poke(memAddress +320, -4163);
+        do Memory.poke(memAddress +352, -1289);
+        do Memory.poke(memAddress +384, -28743);
+        do Memory.poke(memAddress +416, -785);
+        do Memory.poke(memAddress +448, -26723);
+        do Memory.poke(memAddress +480, -1);
         return;
     }
 }

@@ -12,7 +12,7 @@ class Settings {
         let keyLeft = 65;     // a
         let keyRight = 68;    // d
 
-        let cellSize = 20;
+        let cellSize = 16;
         return;
     }
 

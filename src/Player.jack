@@ -7,11 +7,6 @@ class Player {
         let coord = Vector2.new(1, 1);
         return this;
     }
-    
-    method void display() {
-        do Utils.displayCell(coord);
-        return;
-    }
 
     method void move(Vector2 direction) {
         var Vector2 newCoord;
@@ -23,6 +18,26 @@ class Player {
         else {
             do newCoord.dispose();
         }
+        return;
+    }
+
+    method void display() {
+        var int memAddress; 
+        let memAddress = Utils.getSpriteMemAddress(coord);
+        do Memory.poke(memAddress, 1008);
+        do Memory.poke(memAddress +32, 3084);
+        do Memory.poke(memAddress +64, 4098);
+        do Memory.poke(memAddress +96, 4386);
+        do Memory.poke(memAddress +128, 4386);
+        do Memory.poke(memAddress +160, 4098);
+        do Memory.poke(memAddress +192, 2052);
+        do Memory.poke(memAddress +224, 6138);
+        do Memory.poke(memAddress +256, 8193);
+        do Memory.poke(memAddress +288, 11277);
+        do Memory.poke(memAddress +320, 13011);
+        do Memory.poke(memAddress +352, 1752);
+        do Memory.poke(memAddress +384, 2244);
+        do Memory.poke(memAddress +416, 4092);
         return;
     }
 }

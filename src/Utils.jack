@@ -31,4 +31,8 @@ class Utils {
         do Screen.drawRectangle(coord.x() * cellSize, coord.y() * cellSize, coord.x() * cellSize + cellSize, coord.y() * cellSize + cellSize);
         return;
     }
+
+    function int getSpriteMemAddress(Vector2 coord) {
+        return coord.y() * Settings.getCellSize() * 32 + (coord.x() * Settings.getCellSize() / 16) + 16384;
+    }
 }

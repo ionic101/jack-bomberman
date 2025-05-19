@@ -12,11 +12,6 @@ class Enemy {
         return this;
     }
 
-    method void display() {
-        do Utils.displayCell(coord);
-        return;
-    }
-
     method void move() {
         var Vector2 newCoord;
         
@@ -64,6 +59,26 @@ class Enemy {
         }
 
         do curCoord.dispose();
+        return;
+    }
+
+    method void display() {
+        var int memAddress; 
+        let memAddress = Utils.getSpriteMemAddress(coord);
+        do Memory.poke(memAddress, 1008);
+        do Memory.poke(memAddress +32, 2040);
+        do Memory.poke(memAddress +64, 4092);
+        do Memory.poke(memAddress +96, 2340);
+        do Memory.poke(memAddress +128, 4092);
+        do Memory.poke(memAddress +160, 4092);
+        do Memory.poke(memAddress +192, 2040);
+        do Memory.poke(memAddress +224, 1008);
+        do Memory.poke(memAddress +256, 4092);
+        do Memory.poke(memAddress +288, 8190);
+        do Memory.poke(memAddress +320, 7158);
+        do Memory.poke(memAddress +352, 1008);
+        do Memory.poke(memAddress +384, 816);
+        do Memory.poke(memAddress +416, 1848);
         return;
     }
 }

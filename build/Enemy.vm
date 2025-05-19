@@ -10,14 +10,6 @@ call Vector2.upReadOnly 0
 pop this 2
 push pointer 0
 return
-function Enemy.display 0
-push argument 0
-pop pointer 0
-push this 0
-call Utils.displayCell 1
-pop temp 0
-push constant 0
-return
 function Enemy.move 1
 push argument 0
 pop pointer 0
@@ -134,6 +126,96 @@ return
 label IF_FALSE3
 push local 0
 call Vector2.dispose 1
+pop temp 0
+push constant 0
+return
+function Enemy.display 1
+push argument 0
+pop pointer 0
+push this 0
+call Utils.getSpriteMemAddress 1
+pop local 0
+push local 0
+push constant 1008
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 32
+add
+push constant 2040
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 64
+add
+push constant 4092
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 96
+add
+push constant 2340
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 128
+add
+push constant 4092
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 160
+add
+push constant 4092
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 192
+add
+push constant 2040
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 224
+add
+push constant 1008
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 256
+add
+push constant 4092
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 288
+add
+push constant 8190
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 320
+add
+push constant 7158
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 352
+add
+push constant 1008
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 384
+add
+push constant 816
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 416
+add
+push constant 1848
+call Memory.poke 2
 pop temp 0
 push constant 0
 return

@@ -84,3 +84,20 @@ call Screen.drawRectangle 4
 pop temp 0
 push constant 0
 return
+function Utils.getSpriteMemAddress 0
+push argument 0
+call Vector2.y 1
+call Settings.getCellSize 0
+call Math.multiply 2
+push constant 32
+call Math.multiply 2
+push argument 0
+call Vector2.x 1
+call Settings.getCellSize 0
+call Math.multiply 2
+push constant 16
+call Math.divide 2
+add
+push constant 16384
+add
+return

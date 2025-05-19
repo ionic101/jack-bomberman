@@ -7,7 +7,7 @@ push constant 65
 pop static 2
 push constant 68
 pop static 3
-push constant 20
+push constant 16
 pop static 4
 push constant 0
 return
