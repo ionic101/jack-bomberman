@@ -3,6 +3,7 @@ class Main {
         var Game game;
         do Vector2.init();
         do Settings.init();
+        do Random.setSeed(0);
         let game = Game.new();
         do game.start();
         return;

@@ -5,6 +5,7 @@ class Settings {
     static char keyRight;
 
     static int cellSize;
+    static int countBoxes;
 
     function void init() {
         let keyUp = 87;       // w
@@ -13,6 +14,7 @@ class Settings {
         let keyRight = 68;    // d
 
         let cellSize = 16;
+        let countBoxes = 20;
         return;
     }
 
@@ -34,5 +36,9 @@ class Settings {
 
     function char getKeyRight() {
         return keyRight;
+    }
+
+    function int getCountBoxes() {
+        return countBoxes;
     }
 }

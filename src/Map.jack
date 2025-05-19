@@ -8,6 +8,7 @@ class Map {
         let height = 15;
         let cells = Array.new(width * height);
         do createMap();
+        do generateBoxes();
         return this;
     }
 
@@ -46,8 +47,47 @@ class Map {
         return;
     }
 
+    method void spawnBox(LinkedList freeCells) {
+        var Vector2 boxCoord;
+        var int randIndex;
+        let randIndex = Random.randRange(freeCells.getLength() - 1);
+        let boxCoord = freeCells.pop(randIndex);
+        do setCellByVector(2, boxCoord);
+        do boxCoord.dispose();
+        return;
+    }
+
+    method void generateBoxes() {
+        var int i, x, y;
+        var LinkedList freeCells;
+        let freeCells = LinkedList.new();
+        let x = 0;
+        let y = 0;
+        while (x < width) {
+            while (y < height) {
+                if (getCell(x, y) = 0) {
+                    do freeCells.add(Vector2.new(x, y));
+                }
+                let y = y + 1;
+            }
+            let y = 0;
+            let x = x + 1;
+        }
+        let i = 0;
+        while (i < Settings.getCountBoxes()) {
+            do spawnBox(freeCells);
+            let i = i + 1;
+        }
+        return;
+    }
+
     method void setCell(int cellType, int x, int y) {
         let cells[y * width + x] = cellType;
+        return;
+    }
+
+    method void setCellByVector(int cellType, Vector2 coord) {
+        let cells[coord.y() * width + coord.x()] = cellType;
         return;
     }
 
@@ -60,14 +100,18 @@ class Map {
     }
 
     method void display() {
+        var int curCellType;
         var Vector2 curCellCoord;
         let curCellCoord = Vector2.zero();
 
         while (curCellCoord.y() < height) {
             while (curCellCoord.x() < width) {
-                if (getCellByVector(curCellCoord) = 1) {
-                    //do Utils.displayCell(curCellCoord);
+                let curCellType = getCellByVector(curCellCoord);
+                if (curCellType = 1) {
                     do displayWall(curCellCoord);
+                }
+                if (curCellType = 2) {
+                    do displayBox(curCellCoord);
                 }
                 do curCellCoord.setX(curCellCoord.x() + 1);
             }
@@ -96,6 +140,28 @@ class Map {
         do Memory.poke(memAddress +384, -28743);
         do Memory.poke(memAddress +416, -785);
         do Memory.poke(memAddress +448, -26723);
+        do Memory.poke(memAddress +480, -1);
+        return;
+    }
+
+    method void displayBox(Vector2 coord) {
+        var int memAddress; 
+        let memAddress = Utils.getSpriteMemAddress(coord);
+        do Memory.poke(memAddress, -1);
+        do Memory.poke(memAddress +32, -16381);
+        do Memory.poke(memAddress +64, -24571);
+        do Memory.poke(memAddress +96, -28663);
+        do Memory.poke(memAddress +128, -30703);
+        do Memory.poke(memAddress +160, -31711);
+        do Memory.poke(memAddress +192, -32191);
+        do Memory.poke(memAddress +224, -32383);
+        do Memory.poke(memAddress +256, -32383);
+        do Memory.poke(memAddress +288, -32191);
+        do Memory.poke(memAddress +320, -31711);
+        do Memory.poke(memAddress +352, -30703);
+        do Memory.poke(memAddress +384, -28663);
+        do Memory.poke(memAddress +416, -24571);
+        do Memory.poke(memAddress +448, -16381);
         do Memory.poke(memAddress +480, -1);
         return;
     }

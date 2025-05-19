@@ -9,6 +9,8 @@ push constant 68
 pop static 3
 push constant 16
 pop static 4
+push constant 20
+pop static 5
 push constant 0
 return
 function Settings.getCellSize 0
@@ -25,4 +27,7 @@ push static 2
 return
 function Settings.getKeyRight 0
 push static 3
+return
+function Settings.getCountBoxes 0
+push static 5
 return

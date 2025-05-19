@@ -1,4 +1,8 @@
 class Random {
+    /*
+        https://gist.github.com/ybakos/7ca67fcfd07477a9550b
+    */
+
     static int seed;
     
     function void setSeed(int newSeed) {

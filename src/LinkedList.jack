@@ -1,0 +1,66 @@
+class LinkedList {
+    field Node head;
+    field Node tail;
+    field int length;
+
+    constructor LinkedList new() {
+        let head = null;
+        let tail = null;
+        let length = 0;
+        return this;
+    }
+
+    method void add(Vector2 value) {
+        var int i;
+        var Node newNode, curNode;
+        let newNode = Node.new(value);
+        if (head = null) {
+            let head = newNode;
+            let tail = newNode;
+        }
+        else {
+            do newNode.setPrev(tail);
+            do tail.setNext(newNode);
+            let tail = newNode;
+            let length = length + 1;
+        }
+        return;
+    }
+
+    method Vector2 pop(int index) {
+        var Vector2 value;
+        var Node curNode;
+        var int i;
+        let curNode = head;
+        let i = 0;
+        while (i < index) {
+            let curNode = curNode.getNext();
+            let i = i + 1;
+        }
+        if (curNode.getPrev() = null) {
+            let head = curNode.getNext();
+        }
+        else {
+            do curNode.setPrev(curNode.getNext());
+        }
+        if (curNode.getNext() = null) {
+            let tail = curNode.getPrev();
+        }
+        else {
+            do curNode.setNext(curNode.getPrev());
+        }
+        let value = curNode.getValue();
+        let length = length - 1;
+        do curNode.dispose();
+        return value;
+    }
+
+    method int getLength() {
+        return length;
+    }
+
+    method void dispose() {
+        do Memory.deAlloc(this);
+        return;
+    }
+}
