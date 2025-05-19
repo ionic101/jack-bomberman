@@ -1,12 +1,38 @@
 class Settings {
+    static char keyUp;
+    static char keyDown;
+    static char keyLeft;
+    static char keyRight;
+
     static int cellSize;
 
     function void init() {
+        let keyUp = 87;       // w
+        let keyDown = 83;     // s
+        let keyLeft = 65;     // a
+        let keyRight = 68;    // d
+
         let cellSize = 20;
         return;
     }
 
     function int getCellSize() {
         return cellSize;
+    }
+
+    function char getKeyUp() {
+        return keyUp;
+    }
+
+    function char getKeyDown() {
+        return keyDown;
+    }
+
+    function char getKeyLeft() {
+        return keyLeft;
+    }
+
+    function char getKeyRight() {
+        return keyRight;
     }
 }

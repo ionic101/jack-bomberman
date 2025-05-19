@@ -12,10 +12,29 @@ class Game {
     method void start() {
         let isRun = true;
         while (isRun) {
+            do readKeyboard();
             do Screen.clearScreen();
             do map.display();
             do player.display();
             do Sys.wait(150);
+        }
+        return;
+    }
+
+    method void readKeyboard() {
+        var char key;
+        let key = Keyboard.keyPressed();
+        if (key = Settings.getKeyLeft()) {
+            do player.moveLeft();
+        }
+        if (key = Settings.getKeyRight()) {
+            do player.moveRight();
+        }
+        if (key = Settings.getKeyUp()) {
+            do player.moveUp();
+        }
+        if (key = Settings.getKeyDown()) {
+            do player.moveDown();
         }
         return;
     }

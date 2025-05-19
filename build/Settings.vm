@@ -1,8 +1,28 @@
 function Settings.init 0
-push constant 20
+push constant 87
 pop static 0
+push constant 83
+pop static 1
+push constant 65
+pop static 2
+push constant 68
+pop static 3
+push constant 20
+pop static 4
 push constant 0
 return
 function Settings.getCellSize 0
+push static 4
+return
+function Settings.getKeyUp 0
 push static 0
+return
+function Settings.getKeyDown 0
+push static 1
+return
+function Settings.getKeyLeft 0
+push static 2
+return
+function Settings.getKeyRight 0
+push static 3
 return
