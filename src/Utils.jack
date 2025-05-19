@@ -1,9 +1,28 @@
 class Utils {
+    function int mod(int num, int n) {
+        var int r;
+        if (n = 0) {
+            return 0;
+        }
+        let r = num - Math.multiply(Math.divide(num, n), n);
+        if (r < 0) {
+            let r = r + n;
+        }
+        return r;
+    }
+
+    function int pow(int base, int exp) {
+        var int result;
+        let result = 1;
+        while (exp > 0) {
+            let result = result * base;
+            let exp = exp - 1;
+        }
+        return result;
+    }
+
     function boolean isEven(int num) {
-        var int temp;
-        let temp = Math.abs(num); // при отрицательном числе
-        let temp = temp - (Math.multiply(2, (Math.divide(temp, 2)))); // temp = num % 2
-        return (temp = 0);
+        return Utils.mod(num, 2) = 0;
     }
 
     function void displayCell(Vector2 coord) {

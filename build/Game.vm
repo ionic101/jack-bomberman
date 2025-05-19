@@ -9,9 +9,12 @@ call Player.new 1
 pop this 2
 push pointer 0
 return
-function Game.start 0
+function Game.start 1
 push argument 0
 pop pointer 0
+push constant 1234
+call Random.setSeed 1
+pop temp 0
 push constant 0
 not
 pop this 0
@@ -29,6 +32,16 @@ call Map.display 1
 pop temp 0
 push this 2
 call Player.display 1
+pop temp 0
+push constant 10
+push constant 5
+call Output.moveCursor 2
+pop temp 0
+push constant 4
+call Random.randint 1
+pop local 0
+push local 0
+call Output.printInt 1
 pop temp 0
 push constant 150
 call Sys.wait 1

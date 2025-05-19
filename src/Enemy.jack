@@ -1,10 +1,12 @@
 class Enemy {
     field Vector2 coord;
+    field Map map;
 
     field Vector2 moveDirection;
 
-    constructor Enemy new(Vector2 spawnCoord) {
+    constructor Enemy new(Vector2 spawnCoord, Map _map) {
         let coord = spawnCoord;
+        let map = _map;
         let moveDirection = Vector2.up();
         return this;
     }
@@ -15,6 +17,15 @@ class Enemy {
     }
 
     method void move() {
+        var Vector2 newCoord;
+        let newCoord = coord.add(moveDirection);
+        if (map.getCellByVector(newCoord) = 0) {
+            do coord.dispose();
+            let coord = newCoord;
+        }
+        else {
+            do newCoord.dispose();
+        }
         return;
     }
 }

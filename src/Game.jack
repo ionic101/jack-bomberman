@@ -10,6 +10,8 @@ class Game {
     }
 
     method void start() {
+        var int t;
+        do Random.setSeed(1234);
         let isRun = true;
         while (isRun) {
             do readKeyboard();

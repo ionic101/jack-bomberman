@@ -6,11 +6,6 @@ class Settings {
 
     static int cellSize;
 
-    //static Vector2 upDirection;
-    //static Vector2 downDirection;
-    //static Vector2 leftDirection;
-    //static Vector2 rightDirection;
-
     function void init() {
         let keyUp = 87;       // w
         let keyDown = 83;     // s
@@ -18,12 +13,6 @@ class Settings {
         let keyRight = 68;    // d
 
         let cellSize = 20;
-
-        //let upDirection = Vector2.new(0, -1);
-        //let downDirection = Vector2.new(0, 1);
-        //let leftDirection = Vector2.new(-1, 0);
-        //let rightDirection = Vector2.new(1, 0);
-
         return;
     }
 

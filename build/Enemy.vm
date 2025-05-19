@@ -1,11 +1,13 @@
 function Enemy.new 0
-push constant 2
+push constant 3
 call Memory.alloc 1
 pop pointer 0
 push argument 0
 pop this 0
-call Vector2.up 0
+push argument 1
 pop this 1
+call Vector2.up 0
+pop this 2
 push pointer 0
 return
 function Enemy.display 0
@@ -16,8 +18,31 @@ call Utils.displayCell 1
 pop temp 0
 push constant 0
 return
-function Enemy.move 0
+function Enemy.move 1
 push argument 0
 pop pointer 0
+push this 0
+push this 2
+call Vector2.add 2
+pop local 0
+push this 1
+push local 0
+call Map.getCellByVector 2
+push constant 0
+eq
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push this 0
+call Vector2.dispose 1
+pop temp 0
+push local 0
+pop this 0
+goto IF_END0
+label IF_FALSE0
+push local 0
+call Vector2.dispose 1
+pop temp 0
+label IF_END0
 push constant 0
 return
