@@ -3,11 +3,14 @@ class Game {
     field Map map;
     field Player player;
     field Array enemies;
+    field int countEnemies;
 
     constructor Game new() {
         let map = Map.new();
         let player = Player.new(map);
-        let enemies = Array.new(3);
+        let countEnemies = 1;
+        let enemies = Array.new(countEnemies);
+        let enemies[0] = Enemy.new(Vector2.new(1, 9), map);
         return this;
     }
 
@@ -18,7 +21,20 @@ class Game {
             do Screen.clearScreen();
             do map.display();
             do player.display();
+            do displayEnemies();
             do Sys.wait(150);
+        }
+        return;
+    }
+
+    method void displayEnemies() {
+        var Enemy curEnemy;
+        var int i;
+        let i = 0;
+        while (i < countEnemies) {
+            let curEnemy = enemies[i];
+            do curEnemy.display();
+            let i = i + 1;
         }
         return;
     }

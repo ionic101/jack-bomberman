@@ -1,5 +1,5 @@
 function Game.new 0
-push constant 3
+push constant 5
 call Memory.alloc 1
 pop pointer 0
 call Map.new 0
@@ -7,14 +7,28 @@ pop this 1
 push this 1
 call Player.new 1
 pop this 2
+push constant 1
+pop this 4
+push this 4
+call Array.new 1
+pop this 3
+push constant 0
+push this 3
+add
+push constant 1
+push constant 9
+call Vector2.new 2
+push this 1
+call Enemy.new 2
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
 push pointer 0
 return
-function Game.start 1
+function Game.start 0
 push argument 0
 pop pointer 0
-push constant 1234
-call Random.setSeed 1
-pop temp 0
 push constant 0
 not
 pop this 0
@@ -33,9 +47,40 @@ pop temp 0
 push this 2
 call Player.display 1
 pop temp 0
+push pointer 0
+call Game.displayEnemies 1
+pop temp 0
 push constant 150
 call Sys.wait 1
 pop temp 0
+goto WHILE_EXP0
+label WHILE_END0
+push constant 0
+return
+function Game.displayEnemies 2
+push argument 0
+pop pointer 0
+push constant 0
+pop local 1
+label WHILE_EXP0
+push local 1
+push this 4
+lt
+not
+if-goto WHILE_END0
+push local 1
+push this 3
+add
+pop pointer 1
+push that 0
+pop local 0
+push local 0
+call Enemy.display 1
+pop temp 0
+push local 1
+push constant 1
+add
+pop local 1
 goto WHILE_EXP0
 label WHILE_END0
 push constant 0

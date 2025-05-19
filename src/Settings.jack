@@ -6,8 +6,6 @@ class Settings {
 
     static int cellSize;
 
-    static int enemiesCount;
-
     function void init() {
         let keyUp = 87;       // w
         let keyDown = 83;     // s
@@ -15,16 +13,11 @@ class Settings {
         let keyRight = 68;    // d
 
         let cellSize = 20;
-        let enemiesCount = 3;
         return;
     }
 
     function int getCellSize() {
         return cellSize;
-    }
-
-    function int getEnemiesCount() {
-        return enemiesCount;
     }
 
     function char getKeyUp() {
