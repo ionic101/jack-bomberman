@@ -1,17 +1,21 @@
 class Game {
     field boolean isRun;
     field Map map;
+    field Player player;
 
     constructor Game new() {
         let map = Map.new();
+        let player = Player.new();
         return this;
     }
 
     method void start() {
         let isRun = true;
         while (isRun) {
-            //do Screen.clearScreen();
+            do Screen.clearScreen();
             do map.display();
+            do player.display();
+            do Sys.wait(150);
         }
         return;
     }

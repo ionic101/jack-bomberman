@@ -1,4 +1,6 @@
 function Main.main 1
+call Settings.init 0
+pop temp 0
 call CellType.init 0
 pop temp 0
 call Game.new 0

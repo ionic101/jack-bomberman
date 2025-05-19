@@ -1,0 +1,17 @@
+class Player {
+    field int x;
+    field int y;
+
+    constructor Player new() {
+        let x = 1;
+        let y = 0;
+        return this;
+    }
+    
+    method void display() {
+        var int cellSize;
+        let cellSize = Settings.getCellSize();
+        do Screen.drawRectangle(x * cellSize, y * cellSize, x * cellSize + cellSize, y * cellSize + cellSize);
+        return;
+    }
+}

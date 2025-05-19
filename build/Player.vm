@@ -1,34 +1,30 @@
-function Utils.isEven 1
-push argument 0
-call Math.abs 1
-pop local 0
-push local 0
+function Player.new 0
 push constant 2
-push local 0
-push constant 2
-call Math.divide 2
-call Math.multiply 2
-sub
-pop local 0
-push local 0
+call Memory.alloc 1
+pop pointer 0
+push constant 1
+pop this 0
 push constant 0
-eq
+pop this 1
+push pointer 0
 return
-function Utils.displayCell 1
+function Player.display 1
+push argument 0
+pop pointer 0
 call Settings.getCellSize 0
 pop local 0
-push argument 0
+push this 0
 push local 0
 call Math.multiply 2
-push argument 1
+push this 1
 push local 0
 call Math.multiply 2
-push argument 0
+push this 0
 push local 0
 call Math.multiply 2
 push local 0
 add
-push argument 1
+push this 1
 push local 0
 call Math.multiply 2
 push local 0

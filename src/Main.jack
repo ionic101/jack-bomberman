@@ -1,7 +1,7 @@
 class Main {
     function void main () {
-        
         var Game game;
+        do Settings.init();
         do CellType.init();
         let game = Game.new();
         

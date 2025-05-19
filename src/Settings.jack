@@ -1,0 +1,12 @@
+class Settings {
+    static int cellSize;
+
+    function void init() {
+        let cellSize = 20;
+        return;
+    }
+
+    function int getCellSize() {
+        return cellSize;
+    }
+}

@@ -1,0 +1,8 @@
+function Settings.init 0
+push constant 20
+pop static 0
+push constant 0
+return
+function Settings.getCellSize 0
+push static 0
+return

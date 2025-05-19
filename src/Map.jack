@@ -3,12 +3,9 @@ class Map {
     field int width;
     field int height;
 
-    static int cellSize;
-
     constructor Map new() {
-        let width = 20;
-        let height = 10;
-        let cellSize = 20;
+        let width = 19;
+        let height = 11;
         let cells = Array.new(width * height);
         do createMap();
         return this;
@@ -16,6 +13,7 @@ class Map {
 
     method void createMap() {
         var int x, y, curCellType;
+
         let x = 0;
         let y = 0;
         while (y < height) {
@@ -31,6 +29,19 @@ class Map {
             }
             let y = y + 1;
             let x = 0;
+        }
+
+        let x = 0;
+        while (x < width) {
+            do setCell(1, x, 0); // set wall
+            do setCell(1, x, height - 1); // set wall
+            let x = x + 1;
+        }
+        let y = 1;
+        while (y < (height - 1)) {
+            do setCell(1, 0, y); // set wall
+            do setCell(1, width - 1, y); // set wall
+            let y = y + 1;
         }
         return;
     }
@@ -52,7 +63,7 @@ class Map {
             while (x < width) {
                 let curCellType = getCell(x, y);
                 if (curCellType = 1) {
-                    do Screen.drawRectangle(x * cellSize, y * cellSize, x * cellSize + cellSize, y * cellSize + cellSize);
+                    do Utils.displayCell(x, y);
                 }
                 let x = x + 1;
             }
