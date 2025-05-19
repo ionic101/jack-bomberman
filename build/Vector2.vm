@@ -202,6 +202,13 @@ neg
 pop this 1
 push constant 0
 return
+function Vector2.copy 0
+push argument 0
+pop pointer 0
+push this 0
+push this 1
+call Vector2.new 2
+return
 function Vector2.dispose 0
 push argument 0
 pop pointer 0

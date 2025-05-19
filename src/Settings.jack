@@ -7,6 +7,8 @@ class Settings {
     static int cellSize;
     static int countBoxes;
 
+    static Array ignoreCoordsBoxes;
+
     function void init() {
         let keyUp = 87;       // w
         let keyDown = 83;     // s
@@ -14,7 +16,33 @@ class Settings {
         let keyRight = 68;    // d
 
         let cellSize = 16;
-        let countBoxes = 20;
+        let countBoxes = 50;
+
+        let ignoreCoordsBoxes = Array.new(20);
+        //upper left corner
+        let ignoreCoordsBoxes[0] = Vector2.new(1, 1);
+        let ignoreCoordsBoxes[1] = Vector2.new(1, 2);
+        let ignoreCoordsBoxes[2] = Vector2.new(1, 3);
+        let ignoreCoordsBoxes[3] = Vector2.new(2, 1);
+        let ignoreCoordsBoxes[4] = Vector2.new(3, 1);
+        //upper right corner
+        let ignoreCoordsBoxes[5] = Vector2.new(13, 1);
+        let ignoreCoordsBoxes[6] = Vector2.new(13, 2);
+        let ignoreCoordsBoxes[7] = Vector2.new(13, 3);
+        let ignoreCoordsBoxes[8] = Vector2.new(12, 1);
+        let ignoreCoordsBoxes[9] = Vector2.new(11, 1);
+        //lower left corner
+        let ignoreCoordsBoxes[10] = Vector2.new(1, 13);
+        let ignoreCoordsBoxes[11] = Vector2.new(2, 13);
+        let ignoreCoordsBoxes[12] = Vector2.new(3, 13);
+        let ignoreCoordsBoxes[13] = Vector2.new(1, 12);
+        let ignoreCoordsBoxes[14] = Vector2.new(1, 11);
+        //lower right corner
+        let ignoreCoordsBoxes[15] = Vector2.new(13, 13);
+        let ignoreCoordsBoxes[16] = Vector2.new(13, 12);
+        let ignoreCoordsBoxes[17] = Vector2.new(13, 11);
+        let ignoreCoordsBoxes[18] = Vector2.new(12, 13);
+        let ignoreCoordsBoxes[19] = Vector2.new(11, 13);
         return;
     }
 
@@ -40,5 +68,9 @@ class Settings {
 
     function int getCountBoxes() {
         return countBoxes;
+    }
+
+    function Array getIgnoreCoordsBoxes() {
+        return ignoreCoordsBoxes;
     }
 }

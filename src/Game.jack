@@ -10,9 +10,9 @@ class Game {
         let player = Player.new(map);
         let countEnemies = 3;
         let enemies = Array.new(countEnemies);
-        let enemies[0] = Enemy.new(Vector2.new(3, 3), map);
-        let enemies[1] = Enemy.new(Vector2.new(5, 5), map);
-        let enemies[2] = Enemy.new(Vector2.new(5, 5), map);
+        let enemies[0] = Enemy.new(Vector2.new(13, 1), map);
+        let enemies[1] = Enemy.new(Vector2.new(1, 13), map);
+        let enemies[2] = Enemy.new(Vector2.new(13, 13), map);
         return this;
     }
 

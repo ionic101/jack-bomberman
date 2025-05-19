@@ -156,7 +156,44 @@ call Vector2.dispose 1
 pop temp 0
 push constant 0
 return
-function Map.generateBoxes 4
+function Map.isNotInIgnoreCoordsBoxes 3
+push argument 0
+pop pointer 0
+call Settings.getIgnoreCoordsBoxes 0
+pop local 2
+push constant 0
+pop local 1
+label WHILE_EXP0
+push local 1
+push constant 20
+lt
+not
+if-goto WHILE_END0
+push local 1
+push local 2
+add
+pop pointer 1
+push that 0
+pop local 0
+push local 0
+push argument 1
+call Vector2.equal 2
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push constant 0
+return
+label IF_FALSE0
+push local 1
+push constant 1
+add
+pop local 1
+goto WHILE_EXP0
+label WHILE_END0
+push constant 0
+not
+return
+function Map.generateBoxes 5
 push argument 0
 pop pointer 0
 call LinkedList.new 0
@@ -165,46 +202,60 @@ push constant 0
 pop local 1
 push constant 0
 pop local 2
+call Vector2.zero 0
+pop local 4
 label WHILE_EXP0
-push local 1
+push local 4
+call Vector2.x 1
 push this 1
 lt
 not
 if-goto WHILE_END0
 label WHILE_EXP1
-push local 2
+push local 4
+call Vector2.y 1
 push this 2
 lt
 not
 if-goto WHILE_END1
 push pointer 0
-push local 1
-push local 2
-call Map.getCell 3
+push local 4
+call Map.getCellByVector 2
 push constant 0
 eq
+push pointer 0
+push local 4
+call Map.isNotInIgnoreCoordsBoxes 2
+and
 if-goto IF_TRUE0
 goto IF_FALSE0
 label IF_TRUE0
 push local 3
-push local 1
-push local 2
-call Vector2.new 2
+push local 4
+call Vector2.copy 1
 call LinkedList.add 2
 pop temp 0
 label IF_FALSE0
-push local 2
+push local 4
+push local 4
+call Vector2.y 1
 push constant 1
 add
-pop local 2
+call Vector2.setY 2
+pop temp 0
 goto WHILE_EXP1
 label WHILE_END1
+push local 4
 push constant 0
-pop local 2
-push local 1
+call Vector2.setY 2
+pop temp 0
+push local 4
+push local 4
+call Vector2.x 1
 push constant 1
 add
-pop local 1
+call Vector2.setX 2
+pop temp 0
 goto WHILE_EXP0
 label WHILE_END0
 push constant 0

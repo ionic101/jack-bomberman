@@ -96,6 +96,10 @@ class Vector2 {
         return;
     }
 
+    method Vector2 copy() {
+        return Vector2.new(_x, _y);
+    }
+
     method void dispose() {
         do Memory.deAlloc(this);
         return;

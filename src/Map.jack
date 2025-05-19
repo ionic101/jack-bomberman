@@ -57,22 +57,43 @@ class Map {
         return;
     }
 
+    method boolean isNotInIgnoreCoordsBoxes(Vector2 coord) {
+        var Vector2 curCoord;
+        var int i;
+        var Array ignoreCoordsBoxes;
+        let ignoreCoordsBoxes = Settings.getIgnoreCoordsBoxes();
+        // remove ignoreCoordsBoxes
+        let i = 0;
+        while (i < 20) {
+            let curCoord = ignoreCoordsBoxes[i];
+            if (curCoord.equal(coord)) {
+                return false;
+            }
+            let i = i + 1;
+        }
+        return true;
+    }
+
     method void generateBoxes() {
         var int i, x, y;
         var LinkedList freeCells;
+        var Vector2 curCoord;
         let freeCells = LinkedList.new();
         let x = 0;
         let y = 0;
-        while (x < width) {
-            while (y < height) {
-                if (getCell(x, y) = 0) {
-                    do freeCells.add(Vector2.new(x, y));
+        let curCoord = Vector2.zero();
+        while (curCoord.x() < width) {
+            while (curCoord.y() < height) {
+
+                if (getCellByVector(curCoord) = 0 & isNotInIgnoreCoordsBoxes(curCoord)) {
+                    do freeCells.add(curCoord.copy());
                 }
-                let y = y + 1;
+                do curCoord.setY(curCoord.y() + 1);
             }
-            let y = 0;
-            let x = x + 1;
+            do curCoord.setY(0);
+            do curCoord.setX(curCoord.x() + 1);
         }
+
         let i = 0;
         while (i < Settings.getCountBoxes()) {
             do spawnBox(freeCells);
