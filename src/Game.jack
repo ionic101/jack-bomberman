@@ -5,7 +5,7 @@ class Game {
 
     constructor Game new() {
         let map = Map.new();
-        let player = Player.new();
+        let player = Player.new(map);
         return this;
     }
 
@@ -24,6 +24,7 @@ class Game {
     method void readKeyboard() {
         var char key;
         let key = Keyboard.keyPressed();
+
         if (key = Settings.getKeyLeft()) {
             do player.moveLeft();
         }
