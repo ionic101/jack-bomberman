@@ -16,8 +16,6 @@ label WHILE_EXP0
 push this 0
 not
 if-goto WHILE_END0
-call Screen.clearScreen 0
-pop temp 0
 push this 1
 call Map.display 1
 pop temp 0

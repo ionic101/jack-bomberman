@@ -10,7 +10,7 @@ class Game {
     method void start() {
         let isRun = true;
         while (isRun) {
-            do Screen.clearScreen();
+            //do Screen.clearScreen();
             do map.display();
         }
         return;

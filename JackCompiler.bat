@@ -1,29 +1,30 @@
 @echo off
 :: JackCompiler.bat - компилирует .jack файлы из src/ в build/
-:: Убедитесь, что папки src/ и build/ существуют
 
 setlocal
 
-:: Проверяем наличие папки src
+:: Проверка папок
 if not exist "src\" (
     echo Ошибка: Папка "src" не найдена!
     exit /b 1
 )
-
-:: Создаем папку build, если ее нет
 if not exist "build\" mkdir build
 
-:: Компилируем все .jack файлы из src
-echo Компиляция .jack файлов из src/ в build/...
+:: Компиляция .jack файлов (результат будет в src/)
+echo Компиляция .jack файлов из src/...
 java -classpath "%CLASSPATH%;bin/classes;bin/lib/Hack.jar;bin/lib/Compilers.jar" ^
     Hack.Compiler.JackCompiler "src"
 
-:: Проверяем результат компиляции
-if %errorlevel% equ 0 (
-    echo Компиляция успешно завершена!
-) else (
+if %errorlevel% neq 0 (
     echo Ошибка компиляции!
     exit /b %errorlevel%
 )
 
+:: Перемещение всех .vm файлов из src/ в build/
+echo Перемещение .vm файлов в build/...
+for /R src %%f in (*.vm) do (
+    move "%%f" "build\"
+)
+
+echo Готово!
 endlocal

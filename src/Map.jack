@@ -10,6 +10,7 @@ class Map {
         let height = 10;
         let cellSize = 20;
         let cells = Array.new(width * height);
+        do createMap();
         return this;
     }
 
@@ -29,6 +30,7 @@ class Map {
                 let x = x + 1;
             }
             let y = y + 1;
+            let x = 0;
         }
         return;
     }
@@ -55,6 +57,7 @@ class Map {
                 let x = x + 1;
             }
             let y = y + 1;
+            let x = 0;
         }
         return;
     }
