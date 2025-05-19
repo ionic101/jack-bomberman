@@ -23,7 +23,7 @@ pop static 0
 label IF_FALSE0
 push static 0
 return
-function Random.randint 2
+function Random.randRange 2
 push constant 1
 pop local 0
 label WHILE_EXP0

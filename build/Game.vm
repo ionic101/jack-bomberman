@@ -7,7 +7,7 @@ pop this 1
 push this 1
 call Player.new 1
 pop this 2
-push constant 1
+push constant 3
 pop this 4
 push this 4
 call Array.new 1
@@ -17,6 +17,30 @@ push this 3
 add
 push constant 1
 push constant 9
+call Vector2.new 2
+push this 1
+call Enemy.new 2
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 1
+push this 3
+add
+push constant 17
+push constant 9
+call Vector2.new 2
+push this 1
+call Enemy.new 2
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 2
+push this 3
+add
+push constant 17
+push constant 1
 call Vector2.new 2
 push this 1
 call Enemy.new 2
@@ -36,13 +60,13 @@ label WHILE_EXP0
 push this 0
 not
 if-goto WHILE_END0
+call Screen.clearScreen 0
+pop temp 0
 push pointer 0
 call Game.readKeyboard 1
 pop temp 0
 push pointer 0
 call Game.moveEnemies 1
-pop temp 0
-call Screen.clearScreen 0
 pop temp 0
 push this 1
 call Map.display 1
@@ -53,7 +77,7 @@ pop temp 0
 push pointer 0
 call Game.displayEnemies 1
 pop temp 0
-push constant 200
+push constant 1000
 call Sys.wait 1
 pop temp 0
 goto WHILE_EXP0
@@ -121,7 +145,7 @@ push argument 0
 pop pointer 0
 call Keyboard.keyPressed 0
 pop local 0
-call Vector2.zero 0
+call Vector2.zeroReadOnly 0
 pop local 1
 push local 0
 call Settings.getKeyLeft 0
@@ -129,7 +153,7 @@ eq
 if-goto IF_TRUE0
 goto IF_FALSE0
 label IF_TRUE0
-call Vector2.left 0
+call Vector2.leftReadOnly 0
 pop local 1
 label IF_FALSE0
 push local 0
@@ -138,7 +162,7 @@ eq
 if-goto IF_TRUE1
 goto IF_FALSE1
 label IF_TRUE1
-call Vector2.right 0
+call Vector2.rightReadOnly 0
 pop local 1
 label IF_FALSE1
 push local 0
@@ -147,7 +171,7 @@ eq
 if-goto IF_TRUE2
 goto IF_FALSE2
 label IF_TRUE2
-call Vector2.up 0
+call Vector2.upReadOnly 0
 pop local 1
 label IF_FALSE2
 push local 0
@@ -156,15 +180,12 @@ eq
 if-goto IF_TRUE3
 goto IF_FALSE3
 label IF_TRUE3
-call Vector2.down 0
+call Vector2.downReadOnly 0
 pop local 1
 label IF_FALSE3
 push this 2
 push local 1
 call Player.move 2
-pop temp 0
-push local 1
-call Vector2.dispose 1
 pop temp 0
 push constant 0
 return

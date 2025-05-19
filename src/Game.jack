@@ -8,22 +8,24 @@ class Game {
     constructor Game new() {
         let map = Map.new();
         let player = Player.new(map);
-        let countEnemies = 1;
+        let countEnemies = 3;
         let enemies = Array.new(countEnemies);
         let enemies[0] = Enemy.new(Vector2.new(1, 9), map);
+        let enemies[1] = Enemy.new(Vector2.new(17, 9), map);
+        let enemies[2] = Enemy.new(Vector2.new(17, 1), map);
         return this;
     }
 
     method void start() {
         let isRun = true;
         while (isRun) {
+            do Screen.clearScreen();
             do readKeyboard();
             do moveEnemies();
-            do Screen.clearScreen();
             do map.display();
             do player.display();
             do displayEnemies();
-            do Sys.wait(200);
+            do Sys.wait(1000);
         }
         return;
     }
@@ -56,22 +58,21 @@ class Game {
         var char key;
         var Vector2 moveDirection;
         let key = Keyboard.keyPressed();
-        let moveDirection = Vector2.zero();
+        let moveDirection = Vector2.zeroReadOnly();
 
         if (key = Settings.getKeyLeft()) {
-            let moveDirection = Vector2.left();
+            let moveDirection = Vector2.leftReadOnly();
         }
         if (key = Settings.getKeyRight()) {
-            let moveDirection = Vector2.right();
+            let moveDirection = Vector2.rightReadOnly();
         }
         if (key = Settings.getKeyUp()) {
-            let moveDirection = Vector2.up();
+            let moveDirection = Vector2.upReadOnly();
         }
         if (key = Settings.getKeyDown()) {
-            let moveDirection = Vector2.down();
+            let moveDirection = Vector2.downReadOnly();
         }
         do player.move(moveDirection);
-        do moveDirection.dispose();
         return;
     }
 }

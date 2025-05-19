@@ -1,7 +1,7 @@
 function Main.main 1
-call Settings.init 0
+call Vector2.init 0
 pop temp 0
-call CellType.init 0
+call Settings.init 0
 pop temp 0
 call Game.new 0
 pop local 0

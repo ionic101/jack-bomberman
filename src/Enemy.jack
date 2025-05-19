@@ -3,11 +3,12 @@ class Enemy {
     field Map map;
 
     field Vector2 moveDirection;
+    static Vector2 directions;
 
     constructor Enemy new(Vector2 spawnCoord, Map _map) {
         let coord = spawnCoord;
         let map = _map;
-        let moveDirection = Vector2.up();
+        let moveDirection = Vector2.upReadOnly();
         return this;
     }
 
@@ -18,7 +19,7 @@ class Enemy {
 
     method void move() {
         var Vector2 newCoord;
-        do changeDirection();
+        
         let newCoord = coord.add(moveDirection);
         if (map.getCellByVector(newCoord) = 0) {
             do coord.dispose();
@@ -26,75 +27,43 @@ class Enemy {
         }
         else {
             do newCoord.dispose();
+            do changeDirection();
         }
         return;
     }
 
     method void changeDirection() {
-        var Array directions;
-        var Vector2 curDirection, curCoord;
-        var int index, randIndex, i;
-        let directions = Array.new(4);
-        let index = 0;
+        var Vector2 curCoord;
 
-        let curDirection = Vector2.up();
-        let curCoord = coord.add(curDirection);
+        let curCoord = coord.add(Vector2.upReadOnly());
         if (map.getCellByVector(curCoord) = 0) {
-            let directions[index] = curDirection;
-            let index = index + 1;
+            let moveDirection = Vector2.upReadOnly();
+            do curCoord.dispose();
+            return;
         }
-        else {
-            do curDirection.dispose();
-        }
-        do curCoord.dispose();
-
-        let curDirection = Vector2.down();
-        let curCoord = coord.add(curDirection);
+        
+        let curCoord = coord.add(Vector2.rightReadOnly());
         if (map.getCellByVector(curCoord) = 0) {
-            let directions[index] = curDirection;
-            let index = index + 1;
+            let moveDirection = Vector2.rightReadOnly();
+            do curCoord.dispose();
+            return;
         }
-        else {
-            do curDirection.dispose();
-        }
-        do curCoord.dispose();
 
-        let curDirection = Vector2.left();
-        let curCoord = coord.add(curDirection);
+        let curCoord = coord.add(Vector2.downReadOnly());
         if (map.getCellByVector(curCoord) = 0) {
-            let directions[index] = curDirection;
-            let index = index + 1;
+            let moveDirection = Vector2.downReadOnly();
+            do curCoord.dispose();
+            return;
         }
-        else {
-            do curDirection.dispose();
-        }
-        do curCoord.dispose();
 
-        let curDirection = Vector2.right();
-        let curCoord = coord.add(curDirection);
+        let curCoord = coord.add(Vector2.leftReadOnly());
         if (map.getCellByVector(curCoord) = 0) {
-            let directions[index] = curDirection;
-            let index = index + 1;
+            let moveDirection = Vector2.leftReadOnly();
+            do curCoord.dispose();
+            return;
         }
-        else {
-            do curDirection.dispose();
-        }
+
         do curCoord.dispose();
-
-        let randIndex = Random.randint(index - 1);
-        if (randIndex > 0) {
-            let moveDirection = directions[randIndex];
-        }
-
-        let i = 0;
-        while (i < index) {
-            if (~(i = randIndex)) {
-                let curDirection = directions[i];
-                do curDirection.dispose();
-            }
-            let i = i + 1;
-        }
-        do directions.dispose();
         return;
     }
 }

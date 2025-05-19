@@ -1,11 +1,43 @@
 class Vector2 {
     field int _x;
     field int _y;
+
+    static Array baseReadOnly;
     
     constructor Vector2 new(int x, int y) {
         let _x = x;
         let _y = y;
         return this;
+    }
+
+    function void init() {
+        let baseReadOnly = Array.new(5);
+        let baseReadOnly[0] = Vector2.new(0, -1);
+        let baseReadOnly[1] = Vector2.new(0, 1);
+        let baseReadOnly[2] = Vector2.new(-1, 0);
+        let baseReadOnly[3] = Vector2.new(1, 0);
+        let baseReadOnly[4] = Vector2.new(0, 0);
+        return;
+    }
+
+    function Vector2 upReadOnly() {
+        return baseReadOnly[0];
+    }
+
+    function Vector2 downReadOnly() {
+        return baseReadOnly[1];
+    }
+
+    function Vector2 leftReadOnly() {
+        return baseReadOnly[2];
+    }
+
+    function Vector2 rightReadOnly() {
+        return baseReadOnly[3];
+    }
+
+    function Vector2 zeroReadOnly() {
+        return baseReadOnly[4];
     }
 
     function Vector2 up() {
@@ -52,6 +84,16 @@ class Vector2 {
 
     method Vector2 sub(Vector2 other) {
         return Vector2.new(_x - other.x(), _y - other.y());
+    }
+
+    method boolean equal(Vector2 other) {
+        return _x = other.x() & _y = other.y();
+    }
+
+    method void reverse() {
+        let _x = -_x;
+        let _y = -_y;
+        return;
     }
 
     method void dispose() {
