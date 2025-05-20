@@ -2,14 +2,21 @@ class Map {
     field Array cells;
     field int width;
     field int height;
+    field LinkedList noEmptyCells;
 
     constructor Map new() {
         let width = 15;
         let height = 15;
         let cells = Array.new(width * height);
+        let noEmptyCells = LinkedList.new();
         do createMap();
         do generateBoxes();
         return this;
+    }
+
+    method void addNoEmptyCell(Vector2 cell) {
+        do noEmptyCells.add(cell);
+        return;
     }
 
     method void createMap() {
@@ -85,7 +92,7 @@ class Map {
         while (curCoord.x() < width) {
             while (curCoord.y() < height) {
 
-                if (getCellByVector(curCoord) = 0 & isNotInIgnoreCoordsBoxes(curCoord)) {
+                if ((getCellByVector(curCoord) = 0) & isNotInIgnoreCoordsBoxes(curCoord)) {
                     do freeCells.add(curCoord.copy());
                 }
                 do curCoord.setY(curCoord.y() + 1);
@@ -120,11 +127,23 @@ class Map {
         return cells[coord.y() * width + coord.x()];
     }
 
+    method boolean isCanDisplayEmpty(Vector2 coord) {
+        var Node curNode;
+        let curNode = noEmptyCells.getHead();
+        while (~(curNode = null)) {
+            if (coord.equal(curNode.getValue())) {
+                return false;
+            }
+            let curNode = curNode.getNext();
+        }
+        return true;
+    }
+
     method void display() {
         var int curCellType;
         var Vector2 curCellCoord;
         let curCellCoord = Vector2.zero();
-
+        
         while (curCellCoord.y() < height) {
             while (curCellCoord.x() < width) {
                 let curCellType = getCellByVector(curCellCoord);
@@ -134,12 +153,37 @@ class Map {
                 if (curCellType = 2) {
                     do displayBox(curCellCoord);
                 }
+                if ((curCellType = 0) & isCanDisplayEmpty(curCellCoord)) {
+                    do displayEmpty(curCellCoord);
+                }
                 do curCellCoord.setX(curCellCoord.x() + 1);
             }
             do curCellCoord.setY(curCellCoord.y() + 1);
             do curCellCoord.setX(0);
         }
         do curCellCoord.dispose();
+        return;
+    }
+
+    method void displayEmpty(Vector2 coord) {
+        var int memAddress; 
+        let memAddress = Utils.getSpriteMemAddress(coord);
+        do Memory.poke(memAddress, 0);
+        do Memory.poke(memAddress +32, 0);
+        do Memory.poke(memAddress +64, 0);
+        do Memory.poke(memAddress +96, 0);
+        do Memory.poke(memAddress +128, 0);
+        do Memory.poke(memAddress +160, 0);
+        do Memory.poke(memAddress +192, 0);
+        do Memory.poke(memAddress +224, 0);
+        do Memory.poke(memAddress +256, 0);
+        do Memory.poke(memAddress +288, 0);
+        do Memory.poke(memAddress +320, 0);
+        do Memory.poke(memAddress +352, 0);
+        do Memory.poke(memAddress +384, 0);
+        do Memory.poke(memAddress +416, 0);
+        do Memory.poke(memAddress +448, 0);
+        do Memory.poke(memAddress +480, 0);
         return;
     }
 

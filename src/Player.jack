@@ -8,16 +8,23 @@ class Player {
         return this;
     }
 
+    method Vector2 getCoord() {
+        return coord;
+    }
+
     method void move(Vector2 direction) {
         var Vector2 newCoord;
         let newCoord = coord.add(direction);
         if (map.getCellByVector(newCoord) = 0) {
-            do coord.dispose();
-            let coord = newCoord;
+            do coord.setX(newCoord.x());
+            do coord.setY(newCoord.y());
+            
         }
-        else {
-            do newCoord.dispose();
-        }
+        do newCoord.dispose();
+        do Output.moveCursor(17, 32);
+        do Output.printInt(coord.x());
+        do Output.moveCursor(17, 35);
+        do Output.printInt(coord.y());
         return;
     }
 

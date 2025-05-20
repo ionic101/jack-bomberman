@@ -59,6 +59,14 @@ class LinkedList {
         return length;
     }
 
+    method Node getHead() {
+        return head;
+    }
+
+    method Node getTail() {
+        return tail;
+    }
+
     method void dispose() {
         do Memory.deAlloc(this);
         return;

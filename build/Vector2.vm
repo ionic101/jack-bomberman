@@ -186,10 +186,10 @@ push argument 1
 call Vector2.x 1
 eq
 push this 1
-and
 push argument 1
 call Vector2.y 1
 eq
+and
 return
 function Vector2.reverse 0
 push argument 0

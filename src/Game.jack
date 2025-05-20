@@ -6,22 +6,36 @@ class Game {
     field int countEnemies;
 
     constructor Game new() {
+        var Enemy enemy1, enemy2, enemy3;
         let map = Map.new();
         let player = Player.new(map);
+
+        
+
         let countEnemies = 3;
+        let enemy1 = Enemy.new(Vector2.new(13, 1), map);
+        let enemy2 = Enemy.new(Vector2.new(1, 13), map);
+        let enemy3 = Enemy.new(Vector2.new(13, 13), map);
+
         let enemies = Array.new(countEnemies);
-        let enemies[0] = Enemy.new(Vector2.new(13, 1), map);
-        let enemies[1] = Enemy.new(Vector2.new(1, 13), map);
-        let enemies[2] = Enemy.new(Vector2.new(13, 13), map);
+        let enemies[0] = enemy1;
+        let enemies[1] = enemy2;
+        let enemies[2] = enemy3;
+
+
+        do map.addNoEmptyCell(player.getCoord());
+        do map.addNoEmptyCell(enemy1.getCoord());
+        do map.addNoEmptyCell(enemy2.getCoord());
+        do map.addNoEmptyCell(enemy3.getCoord());
         return this;
     }
 
     method void start() {
         let isRun = true;
         while (isRun) {
-            do Screen.clearScreen();
             do readKeyboard();
             do moveEnemies();
+
             do map.display();
             do player.display();
             do displayEnemies();

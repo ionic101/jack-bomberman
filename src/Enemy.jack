@@ -12,18 +12,22 @@ class Enemy {
         return this;
     }
 
+    method Vector2 getCoord() {
+        return coord;
+    }
+
     method void move() {
         var Vector2 newCoord;
         
         let newCoord = coord.add(moveDirection);
         if (map.getCellByVector(newCoord) = 0) {
-            do coord.dispose();
-            let coord = newCoord;
+            do coord.setX(newCoord.x());
+            do coord.setY(newCoord.y());
         }
         else {
-            do newCoord.dispose();
             do changeDirection();
         }
+        do newCoord.dispose();
         return;
     }
 

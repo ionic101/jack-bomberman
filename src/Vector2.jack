@@ -87,7 +87,7 @@ class Vector2 {
     }
 
     method boolean equal(Vector2 other) {
-        return _x = other.x() & _y = other.y();
+        return (_x = other.x()) & (_y = other.y());
     }
 
     method void reverse() {

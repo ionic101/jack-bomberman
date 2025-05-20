@@ -3,8 +3,8 @@ call Vector2.init 0
 pop temp 0
 call Settings.init 0
 pop temp 0
-push constant 0
-call Random.setSeed 1
+push constant 52
+call Random.init 1
 pop temp 0
 call Game.new 0
 pop local 0

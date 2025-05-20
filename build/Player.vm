@@ -10,6 +10,11 @@ call Vector2.new 2
 pop this 1
 push pointer 0
 return
+function Player.getCoord 0
+push argument 0
+pop pointer 0
+push this 1
+return
 function Player.move 1
 push argument 0
 pop pointer 0
@@ -26,16 +31,35 @@ if-goto IF_TRUE0
 goto IF_FALSE0
 label IF_TRUE0
 push this 1
-call Vector2.dispose 1
-pop temp 0
 push local 0
-pop this 1
-goto IF_END0
+call Vector2.x 1
+call Vector2.setX 2
+pop temp 0
+push this 1
+push local 0
+call Vector2.y 1
+call Vector2.setY 2
+pop temp 0
 label IF_FALSE0
 push local 0
 call Vector2.dispose 1
 pop temp 0
-label IF_END0
+push constant 17
+push constant 32
+call Output.moveCursor 2
+pop temp 0
+push this 1
+call Vector2.x 1
+call Output.printInt 1
+pop temp 0
+push constant 17
+push constant 35
+call Output.moveCursor 2
+pop temp 0
+push this 1
+call Vector2.y 1
+call Output.printInt 1
+pop temp 0
 push constant 0
 return
 function Player.display 1

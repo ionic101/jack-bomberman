@@ -1,5 +1,5 @@
 function Map.new 0
-push constant 3
+push constant 4
 call Memory.alloc 1
 pop pointer 0
 push constant 15
@@ -11,6 +11,8 @@ push this 2
 call Math.multiply 2
 call Array.new 1
 pop this 0
+call LinkedList.new 0
+pop this 3
 push pointer 0
 call Map.createMap 1
 pop temp 0
@@ -18,6 +20,15 @@ push pointer 0
 call Map.generateBoxes 1
 pop temp 0
 push pointer 0
+return
+function Map.addNoEmptyCell 0
+push argument 0
+pop pointer 0
+push this 3
+push argument 1
+call LinkedList.add 2
+pop temp 0
+push constant 0
 return
 function Map.createMap 3
 push argument 0
@@ -342,6 +353,37 @@ add
 pop pointer 1
 push that 0
 return
+function Map.isCanDisplayEmpty 1
+push argument 0
+pop pointer 0
+push this 3
+call LinkedList.getHead 1
+pop local 0
+label WHILE_EXP0
+push local 0
+push constant 0
+eq
+not
+not
+if-goto WHILE_END0
+push argument 1
+push local 0
+call Node.getValue 1
+call Vector2.equal 2
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push constant 0
+return
+label IF_FALSE0
+push local 0
+call Node.getNext 1
+pop local 0
+goto WHILE_EXP0
+label WHILE_END0
+push constant 0
+not
+return
 function Map.display 2
 push argument 0
 pop pointer 0
@@ -387,6 +429,21 @@ push local 1
 call Map.displayBox 2
 pop temp 0
 label IF_FALSE1
+push local 0
+push constant 0
+eq
+push pointer 0
+push local 1
+call Map.isCanDisplayEmpty 2
+and
+if-goto IF_TRUE2
+goto IF_FALSE2
+label IF_TRUE2
+push pointer 0
+push local 1
+call Map.displayEmpty 2
+pop temp 0
+label IF_FALSE2
 push local 1
 push local 1
 call Vector2.x 1
@@ -411,6 +468,108 @@ goto WHILE_EXP0
 label WHILE_END0
 push local 1
 call Vector2.dispose 1
+pop temp 0
+push constant 0
+return
+function Map.displayEmpty 1
+push argument 0
+pop pointer 0
+push argument 1
+call Utils.getSpriteMemAddress 1
+pop local 0
+push local 0
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 32
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 64
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 96
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 128
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 160
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 192
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 224
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 256
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 288
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 320
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 352
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 384
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 416
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 448
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 480
+add
+push constant 0
+call Memory.poke 2
 pop temp 0
 push constant 0
 return
